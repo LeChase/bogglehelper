@@ -3,7 +3,7 @@ module to solve boggle boards
 
 @gpschnaars
 """
-
+# Test
 import random
 
 # dict for letter points (taken from scrabble)
