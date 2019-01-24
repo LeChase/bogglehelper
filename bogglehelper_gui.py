@@ -5,7 +5,7 @@ gui for bogglehelper
 """
 
 import bogglehelper as bh
-import ReadTime as rt
+import readtime as rt
 import tkinter as tk
 
 import time
@@ -87,16 +87,12 @@ class BoggleHelperGUI(tk.Tk):
     def _callback(self):
         # gather inputs, convert to Elements, place in list of lists to pass to Matrix
         start = time.time()
-        cells = []
-        for i, lst in enumerate(self.cell_frames):
-            temp = []
-            for j, item in enumerate(lst):
-                elem = bh.Element(letter = item.letter,
+        cells = [[bh.Element(letter = item.letter,
                                         position = (i, j),
                                         letter_multiplier = item.letter_mult,
                                         word_multiplier = item.word_mult)
-                temp.append(elem)
-            cells.append(temp)
+                    for j, item in enumerate(lst)] 
+                 for i, lst in enumerate(self.cell_frames)]
 
         # pass Elements to Matrix, solve for words and print
         print('Matrix:')
