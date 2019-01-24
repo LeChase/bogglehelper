@@ -1,5 +1,5 @@
 """
-module for ReadTime class
+module for read_time function
 
 @gschnaars
 """
