@@ -1,7 +1,6 @@
 """
 module to solve boggle boards
 
-@gpschnaars
 """
 
 import random
