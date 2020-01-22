@@ -1,7 +1,5 @@
 """
 gui for bogglehelper
-
-@gschnaars
 """
 
 import bogglehelper as bh
@@ -10,17 +8,13 @@ import tkinter as tk
 
 import time
 
-
 class BoggleHelperGUI(tk.Tk):
     def __init__(self, matrix_size):
         super().__init__()
 
-        # shape of window in pixels
-        # window is resizeable with mouse so this isn't permanent
         self.geometry("950x1000")
         self.resizable(True, True)
 
-        # window title
         self.title('Boggle Helper')
 
         ############################
@@ -50,7 +44,6 @@ class BoggleHelperGUI(tk.Tk):
         yscroll['command'] = self.matrix_canvas.yview
         xscroll['command'] = self.matrix_canvas.xview     
 
-
         # create frame within canvas
         matrix_frame = tk.Frame(self.matrix_canvas)
         self.matrix_canvas.create_window(4, 4, window = matrix_frame, anchor = 'nw') 
@@ -78,13 +71,12 @@ class BoggleHelperGUI(tk.Tk):
    
         ############################
 
-
-    # callback function to bind scrollbar action
     def _on_frame_configure(self, event = None):
+        # callback function to bind scrollbar action
         self.matrix_canvas.configure(scrollregion = self.matrix_canvas.bbox("all"))
 
-    # callback function for button
     def _callback(self):
+        # callback function for button
         # gather inputs, convert to Elements, place in list of lists to pass to Matrix
         start = time.time()
         cells = [[bh.Element(letter = item.letter,
@@ -100,7 +92,6 @@ class BoggleHelperGUI(tk.Tk):
         print(m)
         print('Working...')
         print(m.find_paths())
-
         print(rt.read_time(time.time() - start), 'to complete')
 
 
@@ -111,8 +102,6 @@ class CellFrame(tk.Frame):
         super().__init__(*args)
         # separate cells and 'raise' them
         self.config(borderwidth = 20, relief = 'raised')
-
-        #########################
 
         self.letter_input        = CellInput(self, title = 'Letter')
         self.letter_input.pack()
@@ -126,19 +115,16 @@ class CellFrame(tk.Frame):
     @property
     def letter(self):
         # get letter from entry 
-        # already string
         return self.letter_input.input
 
     @property
     def letter_mult(self):
         # get letter multiplier from entry 
-        # converted to int
         return int(self.letter_mult_input.input)
 
     @property
     def word_mult(self):
         # get word multiplier from entry 
-        # converted to int
         return int(self.word_mult_input.input)
 
 
@@ -163,5 +149,4 @@ class CellInput(tk.Frame):
 
 if __name__ == '__main__':
 
-    window = BoggleHelperGUI(matrix_size = 4)
-    window.mainloop()
+    pass
