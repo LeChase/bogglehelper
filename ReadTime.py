@@ -1,7 +1,5 @@
 """
 module for read_time function
-
-@gschnaars
 """
 
 import math
