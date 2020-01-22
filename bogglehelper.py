@@ -1,6 +1,5 @@
 """
 module to solve boggle boards
-
 """
 
 import random
@@ -103,10 +102,6 @@ class Matrix(list):
         # initialize empty dict to hold all possible word + score combinations in the matrix
         self.all_tries = {}
 
-        # # reset inputs as attributes of Element class
-        # # not needed if *args passed to Matrix are already in Element form
-        # self._convert_elements()
-
         # compute neighbors for each Element in the matrix
         self._determine_neighbors()
 
@@ -129,7 +124,6 @@ class Matrix(list):
         self.all_tries = sorted(self.all_tries.items(), key = lambda x: x[1], reverse = 1)
         return self.all_tries
 
-    # helper functions
     def _recurse(self, item, prev):
         # for the current Element, create list of neighbors excluding previous Elements
         updated_neighbors = [neighbor for neighbor in item.neighbors if neighbor not in prev]
@@ -183,15 +177,12 @@ class Matrix(list):
         inputmatrix.append(pad)
         return inputmatrix
 
-    # hidden functions
     def __str__(self):
-        # for print function
-        # format matrix into proper-shape string
+        # format matrix to printable view
         return '\n'.join([' '.join([x.letter for x in item]) for item in self])
 
 
 class Trie(list):
-    # subclass list
     # Trie will be list of Element objects
     def __init__(self, *args):
         # *args passed as usual arbitrary arguments for list
@@ -205,7 +196,6 @@ class Trie(list):
     @property
     def score(self):
         # return score of constructed word
-        # function of individual element scores and any multipliers present
         total_score = sum([item.points*item.letter_multiplier for item in self])
         multiplier = self.product([item.word_multiplier for item in self])
         return total_score*multiplier
